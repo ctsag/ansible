@@ -1,0 +1,106 @@
+function _configureHost {
+	export PROMPT_BOX=$(hostname -s)
+}
+
+function _injectLocalConfiguration {
+	if [[ -f ~/.bashrc.local ]]; then
+		. ~/.bashrc.local
+	fi
+}
+
+function _injectLocalFunctions {
+	if [[ -f ~/.bash_functions ]]; then
+		. ~/.bash_functions
+	fi
+}
+
+function _getGitColor {
+	local _COLOR_GREEN="\033[0;32m"
+	local _COLOR_YELLOW="\033[0;33m"
+	local _color="$_COLOR_GREEN"
+	local _branch
+	local _modified
+
+	_branch="$(_getGitBranch)"
+
+	if [[ ! -z "${_branch}" ]] ; then
+		_modified=$(git status --porcelain)
+		if [[ ! -z "${_modified}" ]] ; then
+			_color="$_COLOR_YELLOW"
+		fi
+	fi
+	
+	echo -e "${_color}"
+}
+
+function _getGitBranch {
+	local _branch
+
+	_branch=`git rev-parse --abbrev-ref HEAD 2> /dev/null`
+
+	if [[ ! -z "${_branch}" ]] ; then
+		echo "(${_branch}) "
+	fi
+}
+
+function _configurePrompt {
+	local _COLOR_OCHRE="\033[38;5;95m"
+	local _COLOR_CYAN="\033[0;36m"
+	local _COLOR_YELLOW="\033[0;33m"
+	local _COLOR_WHITE="\033[1;97m"
+	local _COLOR_RESET="\033[0m"
+	local _prompt
+
+	_prompt="\[$_COLOR_OCHRE\]\u@${PROMPT_BOX} "
+	_prompt+="\[\$(_getGitColor)\]"
+	_prompt+="\$(_getGitBranch)"
+	_prompt+="\[$_COLOR_CYAN\][\w] "
+	_prompt+="\[$_COLOR_WHITE\]\$\[$_COLOR_RESET\] "
+
+	export PS1="${_prompt}"
+}
+
+function _configurePath {
+	export PATH="$PATH:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+	export LD_LIBRARY_PATH="$LD_LIBRARY_PATH:/usr/lib:/usr/local/lib:/lib"
+}
+
+function _configureHistory {
+	export HISTSIZE=100000
+	export HISTTIMEFORMAT="%d/%m/%y %T "
+	export HISTCONTROL=ignoredups:ignorespace
+	export PROMPT_COMMAND="history -a; history -n"
+
+	shopt -s histappend
+}
+
+function _configureCompletion {
+	if [[ -f /etc/bash_completion ]]; then
+    	. /etc/bash_completion
+	fi
+}
+
+function _configureAliases {
+	if [[ -f ~/.bash_aliases ]]; then
+		. ~/.bash_aliases
+	fi
+	
+	alias ll='ls -lF --color=auto'
+	alias la='ls -lAF --color=auto'
+	alias diff='colordiff'
+	alias grep='grep --color=auto'
+	alias unix2dos="/usr/bin/fromdos -u"
+	alias dos2unix="/usr/bin/fromdos -d"
+	alias h='history'
+}
+
+_configureHost
+
+_injectLocalConfiguration
+_injectLocalFunctions
+
+_configurePrompt
+_configurePath
+_configureHistory
+_configureCompletion
+_configureAliases

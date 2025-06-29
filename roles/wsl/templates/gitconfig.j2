@@ -1,0 +1,12 @@
+[user]
+    name = '{{ operator_user }}
+    email = '{{ git_user_email }}'
+
+[diff]
+    tool = meld
+
+[difftool]
+    prompt = false
+
+[difftool "meld"]
+    cmd = meld "$LOCAL" "$REMOTE"

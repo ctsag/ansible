@@ -1,0 +1,5 @@
+operator_user: ctsag
+operator_group: '{{ operator_user }}'
+git_user_name: '{{ operator_user }}'
+git_user_email: chrtsago@yahoo.gr
+home_dir: '/home/{{ operator_user }}'

@@ -1,0 +1,38 @@
+- name: Copy bashrc
+  ansible.builtin.copy:
+    src: bashrc
+    dest: '{{ home_dir }}/.bashrc'
+    owner: '{{ operator_user }}'
+    group: '{{ operator_group }}'
+    mode: 0644
+
+- name: Copy bashrc.local
+  ansible.builtin.copy:
+    src: bashrc.local
+    dest: '{{ home_dir }}/.bashrc.local'
+    owner: '{{ operator_user }}'
+    group: '{{ operator_group }}'
+    mode: 0644
+
+- name: Copy gitconfig
+  ansible.builtin.template:
+    src: gitconfig.j2
+    dest: '{{ home_dir }}/.gitconfig'
+    owner: '{{ operator_user }}'
+    group: '{{ operator_group }}'
+    mode: 0644
+
+- name: Create the ssh directory
+  ansible.builtin.file:
+    path: '{{ home_dir }}/.ssh'
+    state: directory
+    owner: '{{ operator_user }}'
+    group: '{{ operator_group }}'
+    mode: 0700
+
+- name: Generate ssh key
+  community.crypto.openssh_keypair:
+    path: '{{ home_dir }}/.ssh/id_ed25519'
+    type: ed25519
+    owner: '{{ operator_user }}'
+    group: '{{ operator_group }}'
