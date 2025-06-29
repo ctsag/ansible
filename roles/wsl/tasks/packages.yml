@@ -1,0 +1,25 @@
+- name: Update and upgrade apt
+  ansible.builtin.apt:
+    update_cache: yes
+    cache_valid_time: 3600
+    upgrade: yes
+
+- name: Install terminator
+  ansible.builtin.apt:
+    name: terminator
+    state: latest
+
+- name: Install pip
+  ansible.builtin.apt:
+    name: python3-pip
+    state: latest
+
+- name: Install venv
+  ansible.builtin.apt:
+    name: python3-venv
+    state: latest
+
+- name: Install meld
+  ansible.builtin.apt:
+    name: meld
+    state: latest

@@ -1,0 +1,20 @@
+function _local-configureHost {
+	export PROMPT_BOX="laptop"
+}
+
+function _local-configurePath {
+	true
+}
+
+function _local-configureCompletion {
+	true
+}
+
+function _local-configureAliases {
+	true
+}
+
+_local-configureHost
+_local-configurePath
+_local-configureCompletion
+_local-configureAliases
