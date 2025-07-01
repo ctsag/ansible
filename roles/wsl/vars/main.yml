@@ -3,3 +3,5 @@ operator_group: '{{ operator_user }}'
 git_user_name: '{{ operator_user }}'
 git_user_email: chrtsago@yahoo.gr
 home_dir: '/home/{{ operator_user }}'
+wsl_mount_dir: /mnt/c
+wsl_parent_host: 172.20.48.1

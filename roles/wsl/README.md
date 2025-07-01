@@ -6,10 +6,15 @@ Ubuntu WSL role
 Requirements
 ------------
 
+- Ubuntu >= 24.04.2 LTS
+- Ansible
+- The following section must be present in /etc/wsl.conf
 ```
-sudo add-apt-repository --yes --update ppa:ansible/ansible
-sudo apt update
-sudo apt install ansible
+[interop]
+appendWindowsPath=false
+
+[automount]
+root=/media/
 ```
 
 Role Variables

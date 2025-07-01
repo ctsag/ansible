@@ -14,7 +14,12 @@ function _local-configureAliases {
 	true
 }
 
+function _local-configureOnStart {
+	cd $(pwd | sed 's/\/media\//\/mnt\//g')
+}
+
 _local-configureHost
 _local-configurePath
 _local-configureCompletion
 _local-configureAliases
+_local-configureOnStart

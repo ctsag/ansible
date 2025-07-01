@@ -4,7 +4,7 @@
     dest: '{{ home_dir }}/.bashrc'
     owner: '{{ operator_user }}'
     group: '{{ operator_group }}'
-    mode: 0644
+    mode: u=rw,g=r,o=r
 
 - name: Copy bashrc.local
   ansible.builtin.copy:
@@ -12,7 +12,7 @@
     dest: '{{ home_dir }}/.bashrc.local'
     owner: '{{ operator_user }}'
     group: '{{ operator_group }}'
-    mode: 0644
+    mode: u=rw,g=r,o=r
 
 - name: Copy gitconfig
   ansible.builtin.template:
@@ -20,7 +20,7 @@
     dest: '{{ home_dir }}/.gitconfig'
     owner: '{{ operator_user }}'
     group: '{{ operator_group }}'
-    mode: 0644
+    mode: u=rw,g=r,o=r
 
 - name: Create the ssh directory
   ansible.builtin.file:
@@ -28,7 +28,7 @@
     state: directory
     owner: '{{ operator_user }}'
     group: '{{ operator_group }}'
-    mode: 0700
+    mode: u=rwx,og-rwx
 
 - name: Generate ssh key
   community.crypto.openssh_keypair:
