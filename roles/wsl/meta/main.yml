@@ -3,7 +3,7 @@ galaxy_info:
   description: Ubuntu WSL role
   company: nothingness.gr
   license: GPL-3.0-only
-  min_ansible_version: 2.1
+  min_ansible_version: '2.1'
   galaxy_tags: []
 
 dependencies: []

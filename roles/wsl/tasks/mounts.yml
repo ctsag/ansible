@@ -1,0 +1,21 @@
+- name: Mount C drive
+  ansible.posix.mount:
+    src: '{{ wsl_parent_host }}:/c/'
+    path: '{{ wsl_mount_dir }}'
+    fstype: nfs
+    opts: 'nfsvers=3,nolock'
+    state: mounted
+
+- name: Gather deprecated mount points
+  ansible.builtin.find:
+    paths: /mnt
+    file_type: directory
+    depth: 1
+  register: found_dirs
+
+- name: Remove deprecated mount points
+  ansible.builtin.file:
+    path: '{{ item.path }}'
+    state: absent
+  loop: '{{ found_dirs.files }}'
+  when: item.path | basename != 'c'
