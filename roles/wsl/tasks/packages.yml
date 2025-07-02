@@ -29,6 +29,16 @@
     name: python-is-python3
     state: present
 
+- name: Install pylint
+  ansible.builtin.apt:
+    name: pylint
+    state: present
+
+- name: Install colordiff
+  ansible.builtin.apt:
+    name: colordiff
+    state: present
+
 - name: Install meld
   ansible.builtin.apt:
     name: meld
