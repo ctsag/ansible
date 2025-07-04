@@ -48,3 +48,8 @@
   ansible.builtin.apt:
     name: nfs-common
     state: present
+
+- name: Install sqlite
+  ansible.builtin.apt:
+    name: sqlite3
+    state: present
