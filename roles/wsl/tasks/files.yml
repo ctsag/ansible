@@ -7,8 +7,8 @@
     mode: u=rw,g=r,o=r
 
 - name: Copy bashrc.local
-  ansible.builtin.copy:
-    src: bashrc.local
+  ansible.builtin.template:
+    src: bashrc.local.j2
     dest: '{{ home_dir }}/.bashrc.local'
     owner: '{{ operator_user }}'
     group: '{{ operator_group }}'

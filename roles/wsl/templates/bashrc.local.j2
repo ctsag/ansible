@@ -1,5 +1,5 @@
 function _local-configureHost {
-	export PROMPT_BOX="laptop"
+	export PROMPT_BOX="wsl"
 }
 
 function _local-configurePath {
@@ -11,7 +11,7 @@ function _local-configureCompletion {
 }
 
 function _local-configureAliases {
-	true
+	alias laptop="ssh {{ laptop_user }}@{{ laptop_host }}"
 }
 
 function _local-configureOnStart {
