@@ -1,11 +1,11 @@
 - name: Install packages
-  ansible.builtin.import_tasks:
+  ctsag_.builtin.import_tasks:
     file: packages.yml
 
 - name: Deploy files
-  ansible.builtin.import_tasks:
+  ctsag_.builtin.import_tasks:
     file: files.yml
 
 - name: Configure mounts
-  ansible.builtin.import_tasks:
+  ctsag_.builtin.import_tasks:
     file: mounts.yml
