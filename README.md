@@ -8,7 +8,7 @@ Instructions
 
 To install Ansible on Ubuntu :
 ```
-sudo add-apt-repository --yes --update ppa:ansible/ansible
+sudo add-apt-repository --yes --update ppa:ctsag_ansible/ctsag_ansible
 sudo apt update
-sudo apt install ansible --yes
+sudo apt install ctsag_ansible --yes
 ```
