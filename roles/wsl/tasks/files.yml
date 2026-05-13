@@ -1,5 +1,5 @@
 - name: Copy bashrc
-  ansible.builtin.copy:
+  ctsag_ansible.builtin.copy:
     src: bashrc
     dest: '{{ home_dir }}/.bashrc'
     owner: '{{ operator_user }}'
@@ -7,7 +7,7 @@
     mode: u=rw,g=r,o=r
 
 - name: Copy bashrc.local
-  ansible.builtin.template:
+  ctsag_ansible.builtin.template:
     src: bashrc.local.j2
     dest: '{{ home_dir }}/.bashrc.local'
     owner: '{{ operator_user }}'
@@ -15,7 +15,7 @@
     mode: u=rw,g=r,o=r
 
 - name: Copy gitconfig
-  ansible.builtin.template:
+  ctsag_ansible.builtin.template:
     src: gitconfig.j2
     dest: '{{ home_dir }}/.gitconfig'
     owner: '{{ operator_user }}'
@@ -23,7 +23,7 @@
     mode: u=rw,g=r,o=r
 
 - name: Create the ssh directory
-  ansible.builtin.file:
+  ctsag_ansible.builtin.file:
     path: '{{ home_dir }}/.ssh'
     state: directory
     owner: '{{ operator_user }}'
